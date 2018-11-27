@@ -25,7 +25,6 @@ import java.util.List;
 public class DiscoveryClientChannelFactory implements GrpcChannelFactory {
 
 
-
     private static final String EUREKA = "eureka://";
 
     private static final String GRPC_PORT = "grpc.server.port";

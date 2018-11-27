@@ -31,8 +31,14 @@ import java.util.concurrent.ScheduledFuture;
 public class EurekaNameResolver extends NameResolver {
 
 
-
+    /**
+     * 服务名
+     */
     private final String serviceName;
+
+    /**
+     * grpc的端口名称
+     */
     private final String portMetaData;
     private final DiscoveryClient client;
     private final SharedResourceHolder.Resource<ScheduledExecutorService> timerServiceResource;
@@ -172,14 +178,27 @@ public class EurekaNameResolver extends NameResolver {
     };
 
 
+    /**
+     * 客户端需要判断grpc端口
+     * @param newServiceInstanceList
+     * @return
+     */
     private boolean isNeedToUpdateServiceInstanceList(List<ServiceInstance> newServiceInstanceList) {
         if (serviceInstanceList.size() == newServiceInstanceList.size()) {
             for (ServiceInstance serviceInstance : serviceInstanceList) {
                 boolean isSame = false;
                 for (ServiceInstance newServiceInstance : newServiceInstanceList) {
-                    if (newServiceInstance.getHost().equals(serviceInstance.getHost()) && newServiceInstance.getPort() == serviceInstance.getPort()) {
-                        isSame = true;
-                        break;
+                    //判断是否发生了改变  host  grpc的端口
+                    if (newServiceInstance.getHost().equals(serviceInstance.getHost()) && newServiceInstance.getPort() ==
+                            serviceInstance.getPort()) {
+                        Map<String, String> newmetadata = newServiceInstance.getMetadata();
+                        Map<String, String> metadata = serviceInstance.getMetadata();
+                        if(metadata.get(portMetaData) != null && newmetadata.get(portMetaData) != null &&metadata.get
+                                (portMetaData).equals(newmetadata.get(portMetaData))){
+                            isSame = true;
+                            break;
+                        }
+
                     }
                 }
                 if (!isSame) {

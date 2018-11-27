@@ -15,14 +15,12 @@ public class GrpcClientAutoConfiguration {
 
 
     @Configuration
-//  @ConditionalOnBean(annotation = GrpcClient.class)
     @ConditionalOnBean(DiscoveryClient.class)
     protected static class GrpcDisCovery{
         @Bean
         public DiscoveryClientChannelFactory channelFactory(DiscoveryClient discoveryClient){
             return new DiscoveryClientChannelFactory(discoveryClient);
         }
-
         @Bean
         public GrpcClientBeanPostProcessor grpcClientBeanPostProcessor(){
             return new GrpcClientBeanPostProcessor();
