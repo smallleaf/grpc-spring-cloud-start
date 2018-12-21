@@ -52,7 +52,9 @@ public class GRpcServerRunner implements CommandLineRunner,DisposableBean {
 
             ServerServiceDefinition serviceDefinition = bindableService.bindService();
             GRpcService gRpcServiceAnn = bindableService.getClass().getAnnotation(GRpcService.class);
-            serviceDefinition  = bindInterceptors(serviceDefinition,gRpcServiceAnn,globalServerInterceptors);
+            if(globalServerInterceptors != null && globalServerInterceptors.size() >0){
+                serviceDefinition  = bindInterceptors(serviceDefinition,gRpcServiceAnn,globalServerInterceptors);
+            }
             serverBuilder.addService(serviceDefinition);
             logger.info("'{}' service has been registered.", bindableService.getClass().getName());
 

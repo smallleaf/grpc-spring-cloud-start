@@ -62,5 +62,9 @@ public class GrpcTagService {
 
 
 
-
-
+## 更新日志
+### v1.0.2
+1.去掉自动配置功能，将服务于客户端拆开，   
+    
+开启grpc服务器@EnableGrpcServerAutoConfig    
+开启grpc客户端功能@EnableGrpcClientAutoConfig  

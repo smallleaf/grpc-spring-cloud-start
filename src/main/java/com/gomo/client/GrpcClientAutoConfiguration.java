@@ -10,7 +10,6 @@ import org.springframework.context.annotation.Configuration;
  * @Description :
  * @Date : 2018/6/5
  */
-@Configuration
 public class GrpcClientAutoConfiguration {
 
 

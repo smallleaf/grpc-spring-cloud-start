@@ -1,3 +1,0 @@
-org.springframework.boot.autoconfigure.EnableAutoConfiguration=\
-com.gomo.server.GRpcServerAutoConfiguration,\
-com.gomo.client.GrpcClientAutoConfiguration

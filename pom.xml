@@ -6,7 +6,7 @@
 
   <groupId>com.gomo.starter</groupId>
   <artifactId>grpc-spring-cloud-starter</artifactId>
-  <version>1.10.4</version>
+  <version>1.0.2</version>
 
   <name>grpc-spring-boot-starter</name>
   <!-- FIXME change it to the project's website -->
@@ -89,5 +89,18 @@
 
 
 
+  <!-- 配置部署的远程仓库 -->
+  <distributionManagement>
+    <snapshotRepository>
+      <id>nexus-snapshots</id>
+      <name>Nexus Snapshot Repository</name>
+      <url>http://gomaven.3g.net.cn:8075/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+    <repository>
+      <id>nexus-releases</id>
+      <name>Nexus Release Repository</name>
+      <url>http://gomaven.3g.net.cn:8075/nexus/content/repositories/releases/</url>
+    </repository>
+  </distributionManagement>
 
 </project>

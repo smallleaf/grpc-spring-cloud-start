@@ -20,5 +20,6 @@ public @interface GRpcService {
      * @return
      */
     Class<? extends ServerInterceptor>[] interceptors() default {};
+
     boolean applyGlobalInterceptors() default true;
 }
